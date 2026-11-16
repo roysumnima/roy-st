@@ -5,6 +5,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true }
   app: {
-    baseURL: '/roy-st/'
+    baseURL: process.env.NUXT_APP_BASE_URL || '/roy-st/'
   }
 })
