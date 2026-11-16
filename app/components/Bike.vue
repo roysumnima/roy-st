@@ -39,20 +39,32 @@ const height = window.innerHeight
 const bikeX = ref(0)
 const bikeY = ref(0)
 
+const streetWidth = 0.6
+const horizon = 0.5 * height
+
 const ease = 0.08
 let animationFrame
 
 function animate() {
   // Lerp towards the cursor
   bikeX.value += (x.value - bikeX.value) * ease
-  bikeY.value += (height * 0.5 + y.value * 0.25 - bikeY.value) * ease
+
+  calculateBikeY()
 
   animationFrame = requestAnimationFrame(animate)
 }
 
+function calculateBikeY() {
+  const targetY = y.value < horizon
+    ? horizon + (horizon - y.value) * streetWidth
+    : horizon + (y.value - horizon) * 1
+
+  bikeY.value += (targetY - bikeY.value) * ease
+}
+
 onMounted(() => {
   bikeX.value = x.value
-  bikeY.value = height * 0.5 + y.value * 0.25
+  bikeY.value = y.value
   animate()
 })
 
@@ -77,10 +89,11 @@ onUnmounted(() => {
 .bike {
   position: fixed;
   top: 50%;
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
+  font-size: 4rem;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   pointer-events: none;
   z-index: 9999;
 }
