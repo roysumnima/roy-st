@@ -5,9 +5,9 @@
 
     <div style="position: absolute; top: 40%; left: 0; width: 100%; display: flex; justify-content: center;">
       <div id="house-links" style="display: flex; gap: 1rem; justify-content: center; align-items: center;">
-        <HouseLink to="https://instagram.com/justrghost">🏠</HouseLink>
-        <HouseLink to="https://instagram.com">🏠</HouseLink>
-        <HouseLink to="https://instagram.com">🏠</HouseLink>
+        <HouseLink to="https://roysumnima.github.io/">🏠</HouseLink>
+        <HouseLink to="https://www.instagram.com/justrghost/">🏠</HouseLink>
+        <HouseLink to="https://ko-fi.com/justrghost">🏠</HouseLink>
       </div>
     </div>
 
