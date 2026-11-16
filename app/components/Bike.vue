@@ -34,20 +34,18 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useMouse } from '@vueuse/core'
 
 const { x, y } = useMouse()
-const height = window.innerHeight
 
 const bikeX = ref(0)
 const bikeY = ref(0)
 
 const streetWidth = 0.6
-const horizon = 0.5 * height
-
+let horizon = 0 // value updated onMounted to be 60% of the window height
 const ease = 0.08
 let animationFrame
 
 function animate() {
   // Lerp towards the cursor
-  bikeX.value += (x.value - bikeX.value) * ease
+  bikeX.value += (x.value - bikeX.value - 20) * ease
 
   calculateBikeY()
 
@@ -59,10 +57,11 @@ function calculateBikeY() {
     ? horizon + (horizon - y.value) * streetWidth
     : horizon + (y.value - horizon) * 1
 
-  bikeY.value += (targetY - bikeY.value) * ease
+  bikeY.value += (targetY - bikeY.value -50 ) * ease
 }
 
 onMounted(() => {
+  horizon = 0.6 * window.innerHeight
   bikeX.value = x.value
   bikeY.value = y.value
   animate()
